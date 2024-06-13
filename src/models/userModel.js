@@ -2,7 +2,7 @@ const { db } = require('./db');
 
 class UserModel {
   getAllUsers(callback) {
-    const getAllUsersQuery = `SELECT * FROM Users`;
+    const getAllUsersQuery = `SELECT * FROM users`;
     db.query(getAllUsersQuery, (err, result) => {
       if (err) {
         return callback(err, null);
@@ -12,7 +12,7 @@ class UserModel {
   }
 
   getMaqueiros(callback) {
-    const getMaqueirosQuery = `SELECT * FROM Users WHERE role = 'Maqueiro'`;
+    const getMaqueirosQuery = `SELECT * FROM users WHERE role = 'Maqueiro'`;
     db.query(getMaqueirosQuery, (err, result) => {
       if (err) {
         return callback(err, null);
@@ -23,7 +23,7 @@ class UserModel {
 
   updateUser(userId, userData, callback) {
     const updateUserQuery = `
-      UPDATE Users 
+      UPDATE users 
       SET username = ?, name = ?, role = ?, perms = ?
       WHERE id = ?
     `;
@@ -37,7 +37,7 @@ class UserModel {
   }
 
   deleteUser(userId, callback) {
-    const deleteUserQuery = `DELETE FROM Users WHERE id = ?`;
+    const deleteUserQuery = `DELETE FROM users WHERE id = ?`;
     db.query(deleteUserQuery, [userId], (err, result) => {
       if (err) {
         return callback(err, null);
