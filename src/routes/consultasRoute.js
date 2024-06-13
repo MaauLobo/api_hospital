@@ -30,13 +30,6 @@ router.put('/transport-requests/:id', (req, res) => transportRequestController.u
 router.delete('/transport-requests/:id', (req, res) => transportRequestController.deleteTransportRequest(req, res));
 router.put('/transport-requests/:id/request-status', (req, res) => transportRequestController.updateTransportRequestStatus(req, res));
 router.put('/transport-requests/:id/status', (req, res) => transportRequestController.updateTransportStatus(req, res)); // Certifique-se de que esta rota está definida corretamente
-router.get('/', transportRequestController.getAllTransportRequests.bind(transportRequestController));
-router.get('/:id', transportRequestController.getTransportRequestById.bind(transportRequestController));
-router.get('/maqueiro/:maqueiro_id', transportRequestController.getTransportRequestsByMaqueiroId.bind(transportRequestController));
-router.post('/', transportRequestController.createTransportRequest.bind(transportRequestController));
-router.put('/:id', transportRequestController.updateTransportRequest.bind(transportRequestController));
-router.delete('/:id', transportRequestController.deleteTransportRequest.bind(transportRequestController));
-router.put('/:id/priority', transportRequestController.updateTransportRequestPriority.bind(transportRequestController));
 router.put('/:id/request-status', transportRequestController.updateTransportRequestStatus.bind(transportRequestController));
 router.put('/:id/status', transportRequestController.updateTransportStatus.bind(transportRequestController));
 router.put('/:id/reject', transportRequestController.rejectTransportRequest.bind(transportRequestController));
