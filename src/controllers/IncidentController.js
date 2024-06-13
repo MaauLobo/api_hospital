@@ -1,3 +1,5 @@
+// controllers/IncidentController.js
+
 const IncidentModel = require('../models/IncidentModel');
 
 class IncidentController {
@@ -6,12 +8,12 @@ class IncidentController {
   }
 
   async getAllIncidents(req, res) {
-    try {
-      const incidents = await this.incidentModel.getAllIncidents();
-      res.status(200).json(incidents);
-    } catch (err) {
-      res.status(500).json({ message: 'Erro ao buscar incidentes', error: err });
-    }
+    this.incidentModel.getAllIncidents((err, incidents) => {
+      if (err) {
+        return res.status(500).json({ message: 'Erro interno do servidor' });
+      }
+      return res.status(200).json(incidents);
+    });
   }
 
   async getIncidentById(req, res) {
