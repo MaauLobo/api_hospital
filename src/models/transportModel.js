@@ -36,8 +36,8 @@ class TransportModel {
 
   insertTransportRequest(data, callback) {
     const query = `
-      INSERT INTO transportrequests (patient_name, data, initial_point, destination_point, priority, status, rejected_by)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO transportrequests (patient_name, initial_point, destination_point, priority, status, rejected_by)
+      VALUES (?, ?, ?, ?, ?, ?)
     `;
     const params = [data.patient_name, data.data, data.initial_point, data.destination_point, data.priority, data.status, ''];
     db.query(query, params, (err, result) => {
