@@ -2,7 +2,7 @@ const { db } = require('./db');
 
 class TransportModel {
   getAllTransportRequests(callback) {
-    const query = 'SELECT * FROM TransportRequests';
+    const query = 'SELECT * FROM transportrequests';
     db.query(query, (err, results) => {
       if (err) {
         console.error('Erro ao consultar todas as solicitações de transporte:', err);
@@ -13,7 +13,7 @@ class TransportModel {
   }
 
   getTransportRequestById(id, callback) {
-    const query = 'SELECT * FROM TransportRequests WHERE id = ?';
+    const query = 'SELECT * FROM transportrequests WHERE id = ?';
     db.query(query, [id], (err, results) => {
       if (err) {
         console.error('Erro ao consultar solicitação de transporte por ID:', err);
@@ -24,7 +24,7 @@ class TransportModel {
   }
 
   getTransportRequestsByMaqueiroId(maqueiro_id, callback) {
-    const query = 'SELECT * FROM TransportRequests WHERE FIND_IN_SET(?, rejected_by) = 0';
+    const query = 'SELECT * FROM transportrequests WHERE FIND_IN_SET(?, rejected_by) = 0';
     db.query(query, [maqueiro_id], (err, results) => {
       if (err) {
         console.error('Erro ao consultar solicitações de transporte por ID do maqueiro:', err);
@@ -66,7 +66,7 @@ class TransportModel {
     }
     params.push(id);
 
-    const query = `UPDATE TransportRequests SET ${updates.join(', ')} WHERE id = ?`;
+    const query = `UPDATE transportrequests SET ${updates.join(', ')} WHERE id = ?`;
 
     db.query(query, params, (err) => {
       if (err) {
@@ -78,7 +78,7 @@ class TransportModel {
   }
 
   deleteTransportRequest(id, callback) {
-    const query = 'DELETE FROM TransportRequests WHERE id = ?';
+    const query = 'DELETE FROM transportrequests WHERE id = ?';
     db.query(query, [id], (err) => {
       if (err) {
         console.error('Erro ao deletar solicitação de transporte:', err);
@@ -89,7 +89,7 @@ class TransportModel {
   }
 
   updateTransportRequestPriority(id, priority, callback) {
-    const query = 'UPDATE TransportRequests SET priority = ? WHERE id = ?';
+    const query = 'UPDATE transportrequests SET priority = ? WHERE id = ?';
     db.query(query, [priority, id], (err) => {
       if (err) {
         console.error('Erro ao atualizar a prioridade da solicitação de transporte:', err);
@@ -100,17 +100,17 @@ class TransportModel {
   }
 
   updateTransportRequestStatus(id, request_status, maqueiro_id, callback) {
-    const sql = `UPDATE TransportRequests SET request_status = ?, maqueiro_id = ? WHERE id = ?`;
+    const sql = `UPDATE transportrequests SET request_status = ?, maqueiro_id = ? WHERE id = ?`;
     db.query(sql, [request_status, maqueiro_id, id], callback);
   }
 
   updateTransportStatus(id, status, callback) {
-    const sql = `UPDATE TransportRequests SET status = ? WHERE id = ?`;
+    const sql = `UPDATE transportrequests SET status = ? WHERE id = ?`;
     db.query(sql, [status, id], callback);
   }
 
   rejectTransportRequest(id, maqueiro_id, callback) {
-    const sql = `UPDATE TransportRequests SET rejected_by = IF(rejected_by = '', ?, CONCAT(rejected_by, ',', ?)) WHERE id = ?`;
+    const sql = `UPDATE transportrequests SET rejected_by = IF(rejected_by = '', ?, CONCAT(rejected_by, ',', ?)) WHERE id = ?`;
     db.query(sql, [maqueiro_id, maqueiro_id, id], callback);
   }
 }
