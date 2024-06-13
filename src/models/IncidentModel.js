@@ -3,26 +3,19 @@
 const { db } = require('./db');
 
 class IncidentModel {
-  getAllIncidents(callback) {
-    const query = `
-      SELECT incident.*, 
-             TransportRequests.patient_name, 
-             TransportRequests.initial_point, 
-             TransportRequests.destination_point,
-             TransportRequests.maqueiro_id,
-             Users.name AS maqueiro_name
-      FROM Incident
-      JOIN TransportRequests ON Incident.solicitacaoId = TransportRequests.id
-      JOIN Users ON TransportRequests.maqueiro_id = Users.id
-    `;
-    db.query(query, (err, results) => {
-      if (err) {
-        console.error('Erro ao consultar todos os incidentes:', err);
-        return callback(err, null);
-      }
-      return callback(null, results);
+   getAllIncidents() {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT * FROM incidents';
+      db.query(query, (err, results) => {
+        if (err) {
+          console.error('Erro ao buscar incidentes:', err);
+          return reject(err);
+        }
+        resolve(results);
+      });
     });
   }
+}
 
   getIncidentById(id, callback) {
     const query = `
