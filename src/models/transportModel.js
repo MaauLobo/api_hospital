@@ -39,7 +39,7 @@ class TransportModel {
       INSERT INTO transportrequests (patient_name, initial_point, destination_point, priority, status, rejected_by)
       VALUES (?, ?, ?, ?, ?, ?)
     `;
-    const params = [data.patient_name, data.data, data.initial_point, data.destination_point, data.priority, data.status, ''];
+    const params = [data.patient_name, data.initial_point, data.destination_point, data.priority, data.status, ''];
     db.query(query, params, (err, result) => {
       if (err) {
         console.error('Erro ao inserir solicitação de transporte:', err);
