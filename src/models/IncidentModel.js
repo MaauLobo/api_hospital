@@ -5,7 +5,7 @@ const { db } = require('./db');
 class IncidentModel {
   getAllIncidents(callback) {
     const query = `
-      SELECT Incident.*, 
+      SELECT incident.*, 
              TransportRequests.patient_name, 
              TransportRequests.initial_point, 
              TransportRequests.destination_point,
@@ -26,7 +26,7 @@ class IncidentModel {
 
   getIncidentById(id, callback) {
     const query = `
-      SELECT Incident.*, 
+      SELECT incident.*, 
              TransportRequests.patient_name, 
              TransportRequests.initial_point, 
              TransportRequests.destination_point,
@@ -48,7 +48,7 @@ class IncidentModel {
 
   getIncidentsByMaqueiroId(maqueiro_id, callback) {
     const query = `
-      SELECT Incident.*, 
+      SELECT incident.*, 
              TransportRequests.patient_name, 
              TransportRequests.initial_point, 
              TransportRequests.destination_point,
