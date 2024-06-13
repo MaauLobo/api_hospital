@@ -1,9 +1,7 @@
-// models/IncidentModel.js
-
 const { db } = require('./db');
 
 class IncidentModel {
-   getAllIncidents() {
+  getAllIncidents() {
     return new Promise((resolve, reject) => {
       const query = 'SELECT * FROM incidents';
       db.query(query, (err, results) => {
@@ -15,7 +13,6 @@ class IncidentModel {
       });
     });
   }
-}
 
   getIncidentById(id, callback) {
     const query = `
