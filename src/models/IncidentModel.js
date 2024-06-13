@@ -12,7 +12,7 @@ class IncidentModel {
              transportrequests.maqueiro_id,
              users.name AS maqueiro_name
       FROM incident
-      JOIN transportrequests ON incident.solicitacaoId = transportRequests.id
+      JOIN transportrequests ON incident.solicitacaoId = transportrequests.id
       JOIN users ON transportrequests.maqueiro_id = users.id
     `;
     db.query(query, (err, results) => {
@@ -33,7 +33,7 @@ class IncidentModel {
              transportrequests.maqueiro_id,
              users.name AS maqueiro_name
       FROM incident
-      JOIN transportrequests ON incident.solicitacaoId = transportRequests.id
+      JOIN transportrequests ON incident.solicitacaoId = transportrequests.id
       JOIN users ON transportrequests.maqueiro_id = users.id
       WHERE incident.id = ?
     `;
