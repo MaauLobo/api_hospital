@@ -1,5 +1,3 @@
-// controllers/IncidentController.js
-
 const IncidentModel = require('../models/IncidentModel');
 
 class IncidentController {
@@ -15,7 +13,6 @@ class IncidentController {
       res.status(500).json({ message: 'Erro ao buscar incidentes', error: err });
     }
   }
-}
 
   async getIncidentById(req, res) {
     const { id } = req.params;
