@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const LoginModel = require('../models/LoginModel'); // Corrigido para importar a classe LoginModel
+const LoginModel = require('../models/loginModel'); // Corrigido para importar a classe LoginModel
 
 const secretKey = 'secret_key';
 
